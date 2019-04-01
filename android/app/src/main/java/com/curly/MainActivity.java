@@ -1,23 +1,15 @@
-package com.ralali.bigagent.android;
+package com.curly;
 
-import android.content.pm.ActivityInfo;
-import android.os.Build;
-import android.os.Bundle;
+import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
 
+    /**
+     * Returns the name of the main component registered from JavaScript.
+     * This is used to schedule rendering of the component.
+     */
     @Override
     protected String getMainComponentName() {
         return "curly";
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      if (Build.VERSION.SDK_INT == 26) {
-          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-      } else {
-          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-      }
     }
 }
