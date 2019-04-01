@@ -17,6 +17,7 @@
     "redux-persist": "^5.10.0"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.4.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "24.1.0",
