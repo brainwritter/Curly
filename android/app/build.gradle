@@ -97,6 +97,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
+    
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
@@ -111,7 +112,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    
+
     signingConfigs {
         release {
             if (project.hasProperty('CURLY_RELEASE_STORE_FILE')) {

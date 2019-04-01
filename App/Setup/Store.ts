@@ -1,7 +1,7 @@
 import { init, RematchRootState } from '@rematch/core';
-import * as models from 'Setup/Models';
-import persistor from 'Setup/Persist';
-import { reactNavigationPlugin } from 'App/Navigation/NavigatorSetup';
+import * as models from './Models';
+import persistor from './Persist';
+import { reactNavigationPlugin } from '../Navigation/NavigatorSetup';
 
 export const store = init({
   models,
