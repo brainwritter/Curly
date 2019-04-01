@@ -10,9 +10,9 @@
   "dependencies": {
     "@rematch/core": "^1.1.0",
     "@rematch/persist": "^1.1.6",
+    "@rematch/react-navigation": "2.0.2",
     "react": "16.6.3",
     "react-native": "0.58.6",
-    "react-native-navigation": "^2.13.1",
     "react-redux": "^6.0.1",
     "redux-persist": "^5.10.0"
   },
@@ -32,6 +32,7 @@
     "lint-staged": "^8.1.5",
     "metro-react-native-babel-preset": "0.53.0",
     "prettier": "^1.16.4",
+    "react-native-typescript-transformer": "^1.2.12",
     "react-test-renderer": "16.6.3",
     "reactotron-react-native": "^3.2.1"
   },

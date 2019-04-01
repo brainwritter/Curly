@@ -1,5 +1,5 @@
-import { Navigation } from 'react-native-navigation';
-import { exampleCurlyScreen as App } from './App/Navigation/AppNavigation';
-import './App/Setup/Reactotron';
+import { AppRegistry } from 'react-native';
+import App from './App/Setup/App';
+// import './App/Setup/Reactotron';
 
-Navigation.events().registerAppLaunchedListener(() => App());
+AppRegistry.registerComponent('curly', () => App);
