@@ -5,8 +5,12 @@ export const counterModel = createModel({
     counter: 0,
   },
   reducers: {
-    increment: (state): number => state.counter + 1,
-    decrement: (state): number => state.counter - 1,
+    increment: (state) => ({
+      counter: state.counter + 1
+    }),
+    decrement: (state) => ({
+      counter: state.counter - 1
+    })
   },
   effects: {
     async incrementAsync() {

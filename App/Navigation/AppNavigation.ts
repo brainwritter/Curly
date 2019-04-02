@@ -1,7 +1,9 @@
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import CounterScreen from 'Domains/User/Screens/index';
+import CounterScreen from '../Domains/User/Screens';
 
-export default StackNavigator({
-  CounterScreen: { screen: CounterScreen },
+const AppNav = createStackNavigator({
+  CounterScreen
 });
+
+export default createAppContainer(AppNav);

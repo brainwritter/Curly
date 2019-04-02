@@ -23,8 +23,8 @@
       "Domains/*": [
         "App/Domains/*"
       ],
-      "curly-ui": [
-        "UIkit/src/index"
+      "@curly-ui": [
+        "UIkit/src"
       ]
     },
   },
@@ -32,5 +32,9 @@
     "node_modules",
     "babel.config.js",
     "metro.config.js"
+  ],
+  "include": [
+    "App",
+    "UIkit/src"
   ]
 }

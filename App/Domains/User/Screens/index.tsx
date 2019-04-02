@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Text, Button, TextStyle, ViewStyle } from 'react-native';
 import { connect } from 'react-redux';
 import { iRootState, Dispatch } from 'Setup/Store';
-import { View } from 'curly-ui';
+import { View } from '@curly-ui';
 
 interface CounterScreenProps {
   counter: number;

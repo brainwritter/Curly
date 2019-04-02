@@ -8,7 +8,7 @@ import Reactotron, {
   asyncStorage,
   networking,
 } from 'reactotron-react-native';
-import { IS_DEV } from 'App/Constants/Env';
+import { IS_DEV } from '../../App/Constants/Env';
 
 // https://github.com/infinitered/reactotron for more options!
 if (IS_DEV) {
