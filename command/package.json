@@ -1,0 +1,13 @@
+{
+  "name": "curly-cli",
+  "version": "1.0.0",
+  "license": "MIT",
+  "bin": {
+    "curly": "bin/run"
+  },
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
