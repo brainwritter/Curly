@@ -1,35 +1,40 @@
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
-import { radius, double_section, section } from '../common/metrics'
+import { StyleSheet, TouchableNativeFeedback, ViewStyle, TextStyle, Text, View } from 'react-native';
+import { radius, double_base_margin, screen_height, screen_width } from '../common/metrics'
 import { peach } from '../common/colors'
 
 type ButtonProps = {
-  style: ViewStyle;
+  style: ViewStyle,
+  textStyle: TextStyle,
   large: boolean,
   small: boolean,
-  primary: boolean
+  primary: boolean,
+  children: string,
+  onPress?: () => void
 }
 
-class Button extends React.PureComponent<ButtonProps, any> {
+class Button extends React.PureComponent<ButtonProps> {
 
   static defaultProps = {
     large: true,
     small: false,
-    primary: true
+    primary: true,
+    style: null,
+    textStyle: null
   }
 
   public render() {
-    const { style, large, small, primary } = this.props
+    const { style, textStyle, large, small, primary, children, onPress } = this.props
     return (
-      <TouchableOpacity style={StyleSheet.flatten([styles.container, style, {
-        ...large && styles.large,
-        ...small && styles.small,
-        ...primary && { backgroundColor: peach }
-      }])}>
-        <Text>
-          {React.Children}
-        </Text>
-      </TouchableOpacity>
+      <TouchableNativeFeedback {...this.props} onPress={onPress}>
+        <View {...this.props} style={StyleSheet.flatten([styles.container, style, {
+          ...large ? styles.large : null,
+          ...small ? styles.small : null,
+          ...primary ? { backgroundColor: peach } : null
+        }])}>
+          <Text style={textStyle}>{children}</Text>
+        </View>
+      </TouchableNativeFeedback>
     )
   }
 }
@@ -42,15 +47,18 @@ type Style = {
 
 const styles = StyleSheet.create<Style>({
   container: {
+    position: 'relative',
     borderRadius: radius,
-    alignSelf: 'center',
-    justifyContent: 'center'
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    paddingVertical: double_base_margin,
+    paddingHorizontal: double_base_margin,
   },
   large: {
-    height: double_section
+    height: (7.8 * screen_height) / 100
   },
   small: {
-    height: section
+    height: (4.8 * screen_height) / 100
   }
 });
 

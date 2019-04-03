@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, Text, Button, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
 import { connect } from 'react-redux';
 import { iRootState, Dispatch } from 'Setup/Store';
-import { View } from '@curly-ui';
+import { View, Button } from '@curly-ui';
 
 interface CounterScreenProps {
   counter: number;
@@ -47,20 +47,22 @@ interface CounterScreenProps {
   counterFunc: any;
 }
 
-class CounterScreen extends React.Component<CounterScreenProps, any> {
+class CounterScreen extends React.Component<CounterScreenProps> {
   public render() {
     const { counter, counterFunc } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.counterText}>The count is {counter}</Text>
-        <View style={styles.rowSpaceBetween}>
-          <Button onPress={counterFunc.increment} title="increment" />
-          <Button onPress={counterFunc.decrement} title="decrement" />
+        {/* <View style={styles.rowSpaceBetween}>
+          <Text style={styles.counterText}>The count is {counter}</Text>
+        </View> */}
+        <View>
+          <Button onPress={counterFunc.increment}>Increment</Button>
+          {/* <Button onPress={counterFunc.decrement}>Decrement</Button> */}
         </View>
-        <View style={styles.rowSpaceBetween}>
-          <Button onPress={counterFunc.incrementAsync} title="incrementAsync" />
-          <Button onPress={counterFunc.decrementAsync} title="decrementAsync" />
-        </View>
+        {/* <View style={styles.rowSpaceBetween}>
+          <Button onPress={counterFunc.incrementAsync}>incrementAsync</Button>
+          <Button onPress={counterFunc.decrementAsync}>decrementAsync</Button>
+        </View> */}
       </View>
     );
   }

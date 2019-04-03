@@ -5,17 +5,18 @@ import { white } from '../common/colors';
 
 
 type ContainerProps = {
-  style: ViewStyle
+  style: ViewStyle,
+  children: React.ReactNode
 }
 
 class Container extends React.PureComponent<ContainerProps, any> {
   public render() {
-    const { style } = this.props
+    const { style, children } = this.props
     return (
       <View
         {...this.props}
         style={StyleSheet.flatten([styles.base, style])}>
-        {React.Children}
+        {children}
       </View>
     );
   }

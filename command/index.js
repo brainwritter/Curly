@@ -8,6 +8,8 @@ module.exports = () => {
   switch (cmd) {
     case 'Domains':
       require('./modules/domains/generateFolder')(module);
+      require('./modules/domains/generateFile')(module);
+      console.log(`${module} has successfully write`);
       break;
     default:
       console.error(`"${cmd}" is not a valid command!`);
