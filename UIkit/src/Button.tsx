@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, ButtonProperties, ViewStyle, TouchableOpacityProperties, TouchableOpacityProps } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
 import { radius, double_section, section } from '../common/metrics'
 import { peach } from '../common/colors'
 
-interface ButtonProps extends TouchableOpacityProperties {
-  children: string;
-  style: TouchableOpacityProps;
+type ButtonProps = {
+  style: ViewStyle;
   large: boolean,
   small: boolean,
   primary: boolean
@@ -20,7 +19,7 @@ class Button extends React.PureComponent<ButtonProps, any> {
   }
 
   public render() {
-    const { children, style, large, small, primary } = this.props
+    const { style, large, small, primary } = this.props
     return (
       <TouchableOpacity style={StyleSheet.flatten([styles.container, style, {
         ...large && styles.large,
@@ -28,14 +27,14 @@ class Button extends React.PureComponent<ButtonProps, any> {
         ...primary && { backgroundColor: peach }
       }])}>
         <Text>
-          {children}
+          {React.Children}
         </Text>
       </TouchableOpacity>
     )
   }
 }
 
-interface Style {
+type Style = {
   container: ViewStyle,
   large: ViewStyle,
   small: ViewStyle,

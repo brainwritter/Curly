@@ -1,27 +1,26 @@
 import * as React from 'react';
-import { StyleSheet, View as RNView, ViewProperties, ViewStyle, StyleProp } from 'react-native';
+import { StyleSheet, View as RNView, ViewStyle, StyleProp } from 'react-native';
 import { base_margin } from '../common/metrics'
 
-export interface ViewProps extends ViewProperties {
-  children: React.ReactNode;
+type ViewProps = {
   style: StyleProp<ViewStyle>;
 }
 
 export default class View extends React.PureComponent<ViewProps, any> {
   public render() {
-    const { children, style } = this.props
+    const { style } = this.props
     return (
       <RNView
         {...this.props}
         style={StyleSheet.flatten([styles.container, style])}
       >
-        {children}
+        {React.Children}
       </RNView>
     );
   }
 }
 
-interface Style {
+type Style = {
   container: ViewStyle
 }
 
