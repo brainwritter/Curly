@@ -17,6 +17,9 @@
       "App": [
         "App/**/*"
       ],
+      "Constants/*": [
+        "App/Constants/*"
+      ],
       "Setup/*": [
         "App/Setup/*"
       ],

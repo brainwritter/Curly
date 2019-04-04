@@ -1,37 +1,53 @@
 import * as React from 'react';
-import { StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { iRootState, Dispatch } from 'Setup/Store';
-import { View, Button } from '@curly-ui';
+import { View, Button, Container, Text } from '@curly-ui';
+import images from 'Constants/images';
 
-interface CounterScreenProps {
+type CounterScreenProps = {
   counter: number;
+  counterFunc: any;
 }
 
-interface Styles {
-  counterText: TextStyle;
-  container: ViewStyle;
-  rowSpaceBetween: ViewStyle;
+class CounterScreen extends React.Component<CounterScreenProps> {
+
+  static navigationOptions = {
+    header: null
+  }
+
+  public render() {
+    const { counter, counterFunc } = this.props;
+    return (
+      <Container style={styles.container}>
+        <View center>
+          <Image source={images.curly_introduction} style={styles.curlyImage} />
+        </View>
+        <View section center>
+          <View>
+            <Text heading>Welcome to curly</Text>
+          </View>
+          <View>
+            <Text alignCenter>Super blazing fast react native boilerplate with driven domain structure, scalable your project out of the box</Text>
+          </View>
+        </View>
+        <View section>
+          <Button>Sign In</Button>
+        </View>
+      </Container >
+    );
+  }
 }
 
-const styles = StyleSheet.create<Styles>({
-  counterText: {
-    fontSize: 17,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
+const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingVertical: 25,
-    paddingHorizontal: 15,
-    alignItems: 'center',
+    justifyContent: 'space-around'
   },
-  rowSpaceBetween: {
+  curlyImage: {
+    height: 150,
     width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: 10,
-  },
+    resizeMode: 'contain'
+  }
 });
 
 const mapState = (state: iRootState) => ({
@@ -41,32 +57,6 @@ const mapState = (state: iRootState) => ({
 const mapDispatch = (dispatch: Dispatch) => ({
   counterFunc: dispatch.counterModel,
 });
-
-interface CounterScreenProps {
-  counter: number;
-  counterFunc: any;
-}
-
-class CounterScreen extends React.Component<CounterScreenProps> {
-  public render() {
-    const { counter, counterFunc } = this.props;
-    return (
-      <View style={styles.container}>
-        {/* <View style={styles.rowSpaceBetween}>
-          <Text style={styles.counterText}>The count is {counter}</Text>
-        </View> */}
-        <View>
-          <Button onPress={counterFunc.increment}>Increment</Button>
-          {/* <Button onPress={counterFunc.decrement}>Decrement</Button> */}
-        </View>
-        {/* <View style={styles.rowSpaceBetween}>
-          <Button onPress={counterFunc.incrementAsync}>incrementAsync</Button>
-          <Button onPress={counterFunc.decrementAsync}>decrementAsync</Button>
-        </View> */}
-      </View>
-    );
-  }
-}
 
 export default connect(
   mapState,

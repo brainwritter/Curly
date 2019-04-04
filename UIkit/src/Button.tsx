@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, TouchableNativeFeedback, ViewStyle, TextStyle, Text, View } from 'react-native';
-import { radius, double_base_margin, screen_height, screen_width } from '../common/metrics'
-import { peach } from '../common/colors'
+import { radius, double_base_margin, screen_height } from '../common/metrics'
+import colors from '../common/colors'
 
 type ButtonProps = {
   style: ViewStyle,
@@ -30,9 +30,9 @@ class Button extends React.PureComponent<ButtonProps> {
         <View {...this.props} style={StyleSheet.flatten([styles.container, style, {
           ...large ? styles.large : null,
           ...small ? styles.small : null,
-          ...primary ? { backgroundColor: peach } : null
+          ...primary ? { backgroundColor: colors.sanMarino } : null
         }])}>
-          <Text style={textStyle}>{children}</Text>
+          <Text style={StyleSheet.flatten([styles.defaultText, textStyle])}>{children}</Text>
         </View>
       </TouchableNativeFeedback>
     )
@@ -43,11 +43,11 @@ type Style = {
   container: ViewStyle,
   large: ViewStyle,
   small: ViewStyle,
+  defaultText: TextStyle
 }
 
 const styles = StyleSheet.create<Style>({
   container: {
-    position: 'relative',
     borderRadius: radius,
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -59,6 +59,10 @@ const styles = StyleSheet.create<Style>({
   },
   small: {
     height: (4.8 * screen_height) / 100
+  },
+  defaultText: {
+    color: colors.white,
+    textAlign: 'center'
   }
 });
 

@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { View, StyleSheet, ViewStyle } from 'react-native'
+import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native'
 import { isIphoneX } from 'react-native-iphone-x-helper'
-import { white } from '../common/colors';
+import colors from '../common/colors';
 
 
 type ContainerProps = {
-  style: ViewStyle,
+  style: StyleProp<ViewStyle>,
   children: React.ReactNode
 }
 
 class Container extends React.PureComponent<ContainerProps, any> {
+  static defaultProps = {
+    style: null
+  }
+
   public render() {
     const { style, children } = this.props
     return (
@@ -29,7 +33,7 @@ type Style = {
 const styles = StyleSheet.create<Style>({
   base: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: colors.white,
     marginBottom: isIphoneX() ? 35 : 0
   }
 })
