@@ -9,6 +9,7 @@ type ButtonProps = {
   large: boolean,
   small: boolean,
   primary: boolean,
+  secondary: boolean,
   children: string,
   onPress?: () => void
 }
@@ -18,19 +19,21 @@ class Button extends React.PureComponent<ButtonProps> {
   static defaultProps = {
     large: true,
     small: false,
-    primary: true,
+    primary: false,
+    secondary: false,
     style: null,
     textStyle: null
   }
 
   public render() {
-    const { style, textStyle, large, small, primary, children, onPress } = this.props
+    const { style, textStyle, large, small, primary, children, onPress, secondary } = this.props
     return (
       <TouchableNativeFeedback {...this.props} onPress={onPress}>
         <View {...this.props} style={StyleSheet.flatten([styles.container, style, {
           ...large ? styles.large : null,
           ...small ? styles.small : null,
-          ...primary ? { backgroundColor: colors.sanMarino } : null
+          ...primary ? { backgroundColor: colors.sanMarino } : null,
+          ...secondary ? { backgroundColor: colors.charlotte } : null
         }])}>
           <Text style={StyleSheet.flatten([styles.defaultText, textStyle])}>{children}</Text>
         </View>
@@ -61,7 +64,7 @@ const styles = StyleSheet.create<Style>({
     height: (4.8 * screen_height) / 100
   },
   defaultText: {
-    color: colors.white,
+    color: colors.black,
     textAlign: 'center'
   }
 });

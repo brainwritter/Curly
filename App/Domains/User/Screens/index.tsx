@@ -2,22 +2,21 @@ import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { iRootState, Dispatch } from 'Setup/Store';
-import { View, Button, Container, Text } from '@curly-ui';
+import { View, Button, Container, Text, RadioButton } from '@curly-ui';
 import images from 'Constants/images';
 
 type CounterScreenProps = {
-  counter: number;
-  counterFunc: any;
+  navigation: any;
 }
 
 class CounterScreen extends React.Component<CounterScreenProps> {
 
   static navigationOptions = {
     header: null
-  }
+  };
 
   public render() {
-    const { counter, counterFunc } = this.props;
+    const { navigation } = this.props;
     return (
       <Container style={styles.container}>
         <View center>
@@ -25,15 +24,18 @@ class CounterScreen extends React.Component<CounterScreenProps> {
         </View>
         <View section center>
           <View>
-            <Text heading>Welcome to curly</Text>
+            <Text primary veryLarge bold>Welcome to curly</Text>
           </View>
           <View>
             <Text alignCenter>Super blazing fast react native boilerplate with driven domain structure, scalable your project out of the box</Text>
           </View>
         </View>
         <View section>
-          <Button>Sign In</Button>
+          <Button secondary onPress={() => navigation.navigate('TextStyleScreen')}>Looking for Awesome TextStyle ?</Button>
         </View>
+        {/* <View section>
+          <Button>Sign In</Button>
+        </View> */}
       </Container >
     );
   }
