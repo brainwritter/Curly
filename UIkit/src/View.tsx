@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View as RNView, ViewStyle } from 'react-native';
-import { base_margin, section } from '../common/metrics'
+import metrics from '../common/metrics'
 
 type ViewProps = {
   backgroundColor: string,
@@ -91,11 +91,11 @@ type Style = {
 
 const styles = StyleSheet.create<Style>({
   container: {
-    paddingVertical: base_margin,
-    paddingHorizontal: base_margin
+    paddingVertical: metrics.baseMargin,
+    paddingHorizontal: metrics.baseMargin
   },
   section: {
-    paddingVertical: section,
-    paddingHorizontal: section
+    paddingVertical: metrics.section,
+    paddingHorizontal: metrics.section
   }
 })

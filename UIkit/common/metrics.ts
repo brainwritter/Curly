@@ -1,16 +1,17 @@
 import { Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
 
-export const margin_horizontal = 8
-export const margin_vertical = 8
-export const section = 24
-export const base_margin = 8
-export const double_base_margin = 16
-export const small_margin = 4
-export const double_section = 48
-export const screen_width = width < height ? width : height
-export const screen_height = width < height ? height : width
-export const half_screen_height = height / 2
-export const half_screen_width = width / 2
-export const radius = 8
-export const heading = 24
+export default {
+  marginHorizontal: 8,
+  marginVertical: 8,
+  section: 24,
+  doubleSection: 48,
+  smallMargin: 4,
+  baseMargin: 8,
+  doubleBaseMargin: 16,
+  screenWidth: width < height ? width : height,
+  screenHeight: width < height ? height : width,
+  halfScreenWidth: width < height ? width / 2 : height / 2,
+  halfScreenHeight: width < height ? height / 2 : width / 2,
+  radius: 8,
+}

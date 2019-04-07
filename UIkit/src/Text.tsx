@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text as RNText, StyleSheet, TextStyle } from 'react-native'
 import colors from '../common/colors';
-import { heading } from '../common/metrics';
+import metrics from '../common/metrics';
 
 type TextProps = {
   children: string,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     color: colors.textSafe,
   },
   heading: {
-    fontSize: heading,
+    fontSize: 24,
     fontWeight: '700'
   }
 })

@@ -1,71 +1,43 @@
 import * as React from 'react';
 import { StyleSheet, TouchableNativeFeedback, ViewStyle, TextStyle, Text, View } from 'react-native';
-import { radius, double_base_margin, screen_height } from '../common/metrics'
+import metrics from '../common/metrics'
 import colors from '../common/colors'
+import { withProps, withStyle } from '../lib/connector'
+import { IButton, IButtonDefaultProps } from '../lib/themeProps'
 
-type ButtonProps = {
-  style: ViewStyle,
-  textStyle: TextStyle,
-  large: boolean,
-  small: boolean,
-  primary: boolean,
-  children: string,
-  onPress?: () => void
+interface ButtonProps extends IButton {
+  style?: ViewStyle;
+  textStyle?: TextStyle;
+  children: string;
 }
 
-class Button extends React.PureComponent<ButtonProps> {
+const Button: React.FunctionComponent<ButtonProps> = (props) => {
+  const { style, textStyle, children } = props;
+  return (
+    <TouchableNativeFeedback {...props}>
+      <View {...props} style={StyleSheet.flatten([styles.container, style])}>
+        <Text style={StyleSheet.flatten([textStyle])}>{children}</Text>
+      </View>
+    </TouchableNativeFeedback>
+  )
+}
 
-  static defaultProps = {
-    large: true,
-    small: false,
-    primary: true,
-    style: null,
-    textStyle: null
-  }
-
-  public render() {
-    const { style, textStyle, large, small, primary, children, onPress } = this.props
-    return (
-      <TouchableNativeFeedback {...this.props} onPress={onPress}>
-        <View {...this.props} style={StyleSheet.flatten([styles.container, style, {
-          ...large ? styles.large : null,
-          ...small ? styles.small : null,
-          ...primary ? { backgroundColor: colors.sanMarino } : null
-        }])}>
-          <Text style={StyleSheet.flatten([styles.defaultText, textStyle])}>{children}</Text>
-        </View>
-      </TouchableNativeFeedback>
-    )
-  }
+Button.defaultProps = {
+  style: {},
+  textStyle: {}
 }
 
 type Style = {
-  container: ViewStyle,
-  large: ViewStyle,
-  small: ViewStyle,
-  defaultText: TextStyle
+  container: ViewStyle
 }
 
 const styles = StyleSheet.create<Style>({
   container: {
-    borderRadius: radius,
     alignSelf: 'stretch',
     justifyContent: 'center',
-    paddingVertical: double_base_margin,
-    paddingHorizontal: double_base_margin,
-  },
-  large: {
-    height: (7.8 * screen_height) / 100
-  },
-  small: {
-    height: (4.8 * screen_height) / 100
-  },
-  defaultText: {
-    color: colors.white,
-    textAlign: 'center'
   }
 });
 
-export default Button;
+export default withProps(IButtonDefaultProps, Button)
 
 
