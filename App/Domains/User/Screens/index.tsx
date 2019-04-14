@@ -32,7 +32,7 @@ class CounterScreen extends React.Component<CounterScreenProps> {
           </View>
         </View>
         <View section>
-          <Button>Your button</Button>
+          <Button>HALO</Button>
         </View>
       </Container >
     );

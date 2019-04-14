@@ -1,45 +1,31 @@
 import * as React from 'react';
-import themeProvider from './themesProvider'
-import curly from '../themes/curlyTheme'
-const ThemeContext = themeProvider(curly)
+import UseTheme from './useTheme'
+import buildStyle from '../themes/buildStyle'
 
-// const withProps = <P> => {
-//   return class ThemeComponents extends React.Component {
-//     public render() {
-//       return (
-//         <Component {...injectedProps} />
-//       )
-//     }
-//   }
-// }
-
-
-// export function withProps<P = {}>(
-//   WrappedComponent: React.ComponentType<P>
-// ): React.ComponentClass<P> {
-//   return class extends React.Component<P> {
-//     render() {
-//       return <WrappedComponent {...this.props} />;
-//     }
-//   };
-// }  
-
-export function withProps<P = {}>(injectedProps: any, WrappedComponent: React.ComponentType<P>) {
+export default function withProps<P = {}>(selector: any, WrappedComponent: React.ComponentType<P>) {
   return class extends React.Component<P> {
     public render() {
       return (
-        <WrappedComponent {...injectedProps} />
+        <UseTheme>
+          {(context) => {
+            log(WrappedComponent.defaultProps)
+            return (
+              <WrappedComponent
+                {...this.props}
+                {...buildingStyle(selector, context[selector], WrappedComponent.defaultProps)}
+              // {...injectedProps}
+              />
+            )
+          }}
+        </UseTheme>
       )
     }
   }
 }
 
-export function withStyle(callback: Function) {
-  const styleContext = React.useContext(ThemeContext)
-  return callback(styleContext)
+function buildingStyle(component: string, styleContext: any, props: any) {
+  const getStyle = buildStyle[component]
+  return {
+    themeStyle: getStyle(styleContext, props)
+  }
 }
-
-  // export const withStyle = ()
-/* <ThemeContext.Consumer>
-        {(context) => ( */
-// export default withProps

@@ -1,30 +1,34 @@
 import * as React from 'react';
 import { StyleSheet, TouchableNativeFeedback, ViewStyle, TextStyle, Text, View } from 'react-native';
-import metrics from '../common/metrics'
-import colors from '../common/colors'
-import { withProps, withStyle } from '../lib/connector'
-import { IButton, IButtonDefaultProps } from '../lib/themeProps'
+import connector from '../lib/connector'
+import { ButtonInterface, ButtonDefaultProps } from '../themes/props/ButtonProps'
 
-interface ButtonProps extends IButton {
+interface ButtonProps extends ButtonInterface {
   style?: ViewStyle;
   textStyle?: TextStyle;
-  children: string;
+  children?: string;
+  themeStyle: ViewStyle;
 }
 
-const Button: React.FunctionComponent<ButtonProps> = (props) => {
-  const { style, textStyle, children } = props;
-  return (
-    <TouchableNativeFeedback {...props}>
-      <View {...props} style={StyleSheet.flatten([styles.container, style])}>
-        <Text style={StyleSheet.flatten([textStyle])}>{children}</Text>
-      </View>
-    </TouchableNativeFeedback>
-  )
-}
+class Button extends React.PureComponent<ButtonProps> {
 
-Button.defaultProps = {
-  style: {},
-  textStyle: {}
+  static defaultProps = {
+    ...ButtonDefaultProps,
+    style: {},
+    textStyle: {},
+  }
+
+  public render() {
+    const { style, textStyle, children, themeStyle } = this.props;
+    log('theme', themeStyle)
+    return (
+      <TouchableNativeFeedback {...this.props}>
+        <View {...this.props} style={StyleSheet.flatten([styles.container, style])}>
+          <Text style={StyleSheet.flatten([textStyle, { ...themeStyle }])}>{children}</Text>
+        </View>
+      </TouchableNativeFeedback>
+    )
+  }
 }
 
 type Style = {
@@ -34,10 +38,10 @@ type Style = {
 const styles = StyleSheet.create<Style>({
   container: {
     alignSelf: 'stretch',
-    justifyContent: 'center',
+    justifyContent: 'center'
   }
 });
 
-export default withProps(IButtonDefaultProps, Button)
+export default connector("Button", Button)
 
 

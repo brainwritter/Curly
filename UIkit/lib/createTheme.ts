@@ -1,7 +1,6 @@
-import * as R from 'ramda';
-import { IButtonStyle, IButtonProps } from './themeProps'
+import { ButtonStyle } from '../themes/props/ButtonProps'
 
-interface ICreateTheme extends IButtonStyle, IButtonProps { }
+interface ICreateTheme extends ButtonStyle { }
 
 export default function createTheme(theme: ICreateTheme) {
   return theme

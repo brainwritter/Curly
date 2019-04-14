@@ -14,7 +14,7 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "App": [
+      "App/*": [
         "App/**/*"
       ],
       "Constants/*": [
