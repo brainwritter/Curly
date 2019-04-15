@@ -21,9 +21,7 @@ export default createTheme({
       }
     },
     textSize: {
-      normal: {
-        fontSize: 14
-      }
+      normal: 14
     },
     margin: {
       vertical: metrics.marginVertical,

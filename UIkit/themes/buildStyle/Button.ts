@@ -1,9 +1,14 @@
 const ButtonStyle = (style: any, props: any) => {
   return {
-    backgroundColor: style.backgroundColor[props.type],
-    color: style.textColor[props.type],
-    height: 50,
-    borderRadius: style.borderRadius
+    Button: {
+      backgroundColor: style.backgroundColor[props.type],
+      height: style.size[props.size].height,
+      borderRadius: style.borderRadius,
+    },
+    Text: {
+      color: style.textColor[props.type],
+      fontSize: style.textSize[props.size]
+    }
   }
 }
 

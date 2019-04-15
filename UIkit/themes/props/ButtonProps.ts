@@ -31,9 +31,7 @@ export interface ButtonStyle {
 
     /** button text size */
     textSize?: {
-      normal?: {
-        fontSize: number
-      }
+      normal?: number
     }
 
     /**

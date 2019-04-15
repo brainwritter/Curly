@@ -20,11 +20,10 @@ class Button extends React.PureComponent<ButtonProps> {
 
   public render() {
     const { style, textStyle, children, themeStyle } = this.props;
-    log('theme', themeStyle)
     return (
       <TouchableNativeFeedback {...this.props}>
-        <View {...this.props} style={StyleSheet.flatten([styles.container, style])}>
-          <Text style={StyleSheet.flatten([textStyle, { ...themeStyle }])}>{children}</Text>
+        <View {...this.props} style={StyleSheet.flatten([{ ...themeStyle.Button }, styles.container, style])}>
+          <Text style={StyleSheet.flatten([{ ...themeStyle.Text }, textStyle, styles.textContainer])}>{children}</Text>
         </View>
       </TouchableNativeFeedback>
     )
@@ -32,13 +31,17 @@ class Button extends React.PureComponent<ButtonProps> {
 }
 
 type Style = {
-  container: ViewStyle
+  container: ViewStyle,
+  textContainer: TextStyle
 }
 
 const styles = StyleSheet.create<Style>({
   container: {
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  textContainer: {
+    textAlign: 'center'
   }
 });
 

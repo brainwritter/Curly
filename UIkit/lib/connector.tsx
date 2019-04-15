@@ -8,7 +8,6 @@ export default function withProps<P = {}>(selector: any, WrappedComponent: React
       return (
         <UseTheme>
           {(context) => {
-            log(WrappedComponent.defaultProps)
             return (
               <WrappedComponent
                 {...this.props}
