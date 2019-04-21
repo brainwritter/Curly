@@ -18,7 +18,6 @@ class CounterScreen extends React.Component<CounterScreenProps> {
   }
 
   public render() {
-    const { counter, counterFunc } = this.props;
     return (
       <View justifyContent="space-around" flex={1} backgroundColor="white">
         <View align="center">
