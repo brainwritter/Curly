@@ -1,18 +1,19 @@
 import * as React from 'react';
 import UseTheme from './useTheme'
 import buildStyle from '../themes/buildStyle'
+import { BuildStyleType } from '../themes/buildStyle'
 
-export default function withProps<P = {}>(selector: any, WrappedComponent: React.ComponentType<P>) {
-  return class extends React.Component<P> {
+export default function <P = {}>(WrappedComponent: React.ComponentType<P>) {
+  return class WithProps extends React.Component<P> {
     public render() {
+      const selector: any = WrappedComponent.displayName
       return (
         <UseTheme>
-          {(context) => {
+          {(context: any) => {
             return (
               <WrappedComponent
                 {...this.props}
-                {...buildingStyle(selector, context[selector], WrappedComponent.defaultProps)}
-              // {...injectedProps}
+                {...bindStyle(selector, context, { ...WrappedComponent.defaultProps, ...this.props })}
               />
             )
           }}
@@ -22,9 +23,9 @@ export default function withProps<P = {}>(selector: any, WrappedComponent: React
   }
 }
 
-function buildingStyle(component: string, styleContext: any, props: any) {
-  const getStyle = buildStyle[component]
+function bindStyle(component: BuildStyleType, styleContext: any, props: any) {
+  const getComponentStyle = buildStyle(component, styleContext, props)
   return {
-    themeStyle: getStyle(styleContext, props)
+    themeStyle: getComponentStyle
   }
 }

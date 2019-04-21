@@ -1,82 +1,36 @@
 import * as React from 'react';
-import { StyleSheet, View as RNView, ViewStyle } from 'react-native';
-import metrics from '../common/metrics'
+import connector from '../lib/connector'
+import { StyleSheet, View as RNView, ViewStyle as RNViewStyle } from 'react-native';
+import { ViewDefaultProps, ViewInterface } from '../themes/props/ViewProps'
+import { Color, ColorProperty } from 'csstype';
 
-type ViewProps = {
-  backgroundColor: string,
-  center: boolean,
-  children: React.ReactNode,
-  // flex: boolean,
-  section: boolean
-  style: ViewStyle,
-  // header: boolean,
-  // small: boolean,
-  // start: boolean,
-  // end: boolean,
-  // width: number,
-  // height: number,
-  // plain: boolean,
-  // spaceBetween: boolean,
-  // spaceAround: boolean,
-  // verticalCenter: boolean,
-  // row: boolean,
-  // column: boolean,
-  // backgroundColor: boolean,
-  // borderRadius: number
+interface ViewProps extends ViewInterface, RNViewStyle {
+  children: React.ReactNode;
+  style: RNViewStyle;
+  justifyContent: 'space-around' | 'center' | 'space-between' | 'flex-end' | 'flex-start' | 'space-evenly';
+  flexDirection: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+  backgroundColor: string;
+  flex: number;
+  borderRadius: number;
 }
-
-export default class View extends React.PureComponent<ViewProps, any> {
+class View extends React.PureComponent<ViewProps, any> {
 
   static defaultProps = {
-    backgroundColor: null,
-    center: false,
-    // flex: false,
-    section: false,
-    style: null,
+    ...ViewDefaultProps,
+    style: null
   }
 
   public render() {
     const {
-      backgroundColor,
-      center,
       children,
-      // flex,
-      section,
       style,
-      // header,
-      // small,
-      // start,
-      // end,
-      // width,
-      // height,
-      // plain,
-      // spaceBetween,
-      // spaceAround,
-      // verticalCenter,
-      // row,
-      // column,
-      // borderRadius
+      themeStyle
     } = this.props
     return (
       <RNView
         {...this.props}
-        style={StyleSheet.flatten([styles.container, style, {
-          ...(section ? styles.section : null),
-          // ...(flex ? { flex: 1 } : null),
-          // ...(width ? { width: width } : null),
-          // ...(height ? { height: height } : null),
-          // ...(start ? { alignItems: 'flex-start' } : null),
-          // ...(end ? { alignItems: 'flex-end' } : null),
-          ...(center ? { alignItems: 'center' } : null),
-          // ...(verticalCenter ? { justifyContent: 'center' } : null),
-          // ...(plain ? { paddingVertical: 0, paddingHorizontal: 0 } : null),
-          // ...(spaceBetween ? { justifyContent: 'space-between' } : null),
-          // ...(spaceAround ? { justifyContent: 'space-around' } : null),
-          // ...(row ? { flexDirection: 'row' } : null),
-          // ...(column ? { flexDirection: 'column' } : null),
-          ...(backgroundColor ? { backgroundColor } : null),
-          // ...(borderRadius ? { borderRadius } : null)
-        }])}
+
+        style={StyleSheet.flatten([style, themeStyle])}
       >
         {children}
       </RNView>
@@ -84,18 +38,4 @@ export default class View extends React.PureComponent<ViewProps, any> {
   }
 }
 
-type Style = {
-  container: ViewStyle,
-  section: ViewStyle
-}
-
-const styles = StyleSheet.create<Style>({
-  container: {
-    paddingVertical: metrics.baseMargin,
-    paddingHorizontal: metrics.baseMargin
-  },
-  section: {
-    paddingVertical: metrics.section,
-    paddingHorizontal: metrics.section
-  }
-})
+export default connector(View)

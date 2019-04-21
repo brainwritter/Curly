@@ -4,8 +4,8 @@ import curly from '../themes/curlyTheme'
 
 const StyledContainer = themesProvider(curly)
 
-export default function ({ children }) {
-
+export default function (props: any) {
+  const { children } = props;
   return (
     <StyledContainer.Consumer>
       {children}

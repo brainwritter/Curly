@@ -2,8 +2,9 @@ import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { iRootState, Dispatch } from 'Setup/Store';
-import { View, Button, Container, Text } from '@curly-ui';
+import { View, Button, Text } from '@curly-ui';
 import images from 'Constants/images';
+
 
 type CounterScreenProps = {
   counter: number;
@@ -19,22 +20,22 @@ class CounterScreen extends React.Component<CounterScreenProps> {
   public render() {
     const { counter, counterFunc } = this.props;
     return (
-      <Container style={styles.container}>
-        <View center>
+      <View justifyContent="space-around" flex={1} backgroundColor="white">
+        <View align="center">
           <Image source={images.curly_introduction} style={styles.curlyImage} />
         </View>
-        <View section center>
-          <View>
-            <Text heading>Welcome to curly</Text>
+        <View type="section">
+          <View align="center">
+            <Text size="large" weight="bold">Welcome to curly</Text>
           </View>
-          <View>
+          <View align="center">
             <Text alignCenter>Super blazing fast react native boilerplate with driven domain structure, scalable your project out of the box</Text>
           </View>
         </View>
-        <View section>
-          <Button type="alternative">HALO</Button>
+        <View type="section">
+          <Button>CONTINUE</Button>
         </View>
-      </Container >
+      </View >
     );
   }
 }

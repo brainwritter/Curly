@@ -1,40 +1,35 @@
 import * as React from 'react';
-import { Text as RNText, StyleSheet, TextStyle } from 'react-native'
-import colors from '../common/colors';
-import metrics from '../common/metrics';
+import { Text as RNText, TextStyle, StyleSheet } from 'react-native'
+import connector from '../lib/connector'
+import { TextInterface, TextDefaultProps } from '../themes/props/TextProps'
 
-type TextProps = {
+interface TextProps extends TextInterface {
   children: string,
-  heading: boolean,
   style: TextStyle,
-  alignCenter: boolean
+  alignCenter: boolean,
+  themeStyle: TextStyle
 }
 
-export default class Text extends React.PureComponent<TextProps> {
+class Text extends React.PureComponent<TextProps> {
 
   static defaultProps = {
+    ...TextDefaultProps,
     heading: false,
     style: null,
     alignCenter: null
   }
 
   public render() {
-    const { alignCenter, children, heading, style } = this.props
-    return <RNText {...this.props} style={StyleSheet.flatten([styles.default, style, {
-      ...(heading ? styles.heading : null),
-      ...(alignCenter ? { textAlign: 'center' } : null)
-    }])}>
+    const { alignCenter, children, style, themeStyle } = this.props
+    return <RNText {...this.props} style={StyleSheet.flatten([
+      themeStyle,
+      style,
+      {
+        ...(alignCenter ? { textAlign: 'center' } : null)
+      }])}>
       {children}
     </RNText>
   }
 }
 
-const styles = StyleSheet.create({
-  default: {
-    color: colors.textSafe,
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: '700'
-  }
-})
+export default connector(Text)

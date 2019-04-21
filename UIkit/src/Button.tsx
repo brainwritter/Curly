@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, TouchableNativeFeedback, ViewStyle, TextStyle, Text, View } from 'react-native';
 import connector from '../lib/connector'
+import { StyleSheet, TouchableNativeFeedback, ViewStyle, TextStyle, Text, View } from 'react-native';
 import { ButtonInterface, ButtonDefaultProps } from '../themes/props/ButtonProps'
 
 interface ButtonProps extends ButtonInterface {
@@ -45,6 +45,6 @@ const styles = StyleSheet.create<Style>({
   }
 });
 
-export default connector("Button", Button)
+export default connector(Button)
 
 

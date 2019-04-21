@@ -1,15 +1,24 @@
-const ButtonStyle = (style: any, props: any) => {
+import { ButtonStyle, ButtonInterface } from '../props/ButtonProps'
+import { TextStyle } from '../props/TextProps'
+
+interface componentProps extends ButtonInterface { }
+interface StyleProps extends ButtonStyle, TextStyle { }
+
+export default function (componentStyle: StyleProps, props: componentProps) {
+  const styleButton = componentStyle.Button
+  const styleText = componentStyle.Text
+
   return {
     Button: {
-      backgroundColor: style.backgroundColor[props.type],
-      height: style.size[props.size].height,
-      borderRadius: style.borderRadius,
+      backgroundColor: styleButton.backgroundColor[props.type],
+      height: styleButton.size[props.size]!.height,
+      borderRadius: styleButton.borderRadius,
     },
     Text: {
-      color: style.textColor[props.type],
-      fontSize: style.textSize[props.size]
-    }
-  }
-}
-
-export default ButtonStyle
+      fontFamily: styleText.weight.regular,
+      color: styleButton.textColor[props.type],
+      fontSize: styleButton.textSize.normal,
+      fontWeight: styleButton.textWeight.normal
+    },
+  };
+};

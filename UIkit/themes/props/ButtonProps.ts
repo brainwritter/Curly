@@ -1,7 +1,7 @@
 
 export interface ButtonInterface {
-  type?: 'primary' | 'secondary' | 'alternative';
-  size?: 'normal';
+  type: 'primary' | 'secondary' | 'alternative';
+  size: 'normal';
 }
 
 export const ButtonDefaultProps = {
@@ -10,19 +10,19 @@ export const ButtonDefaultProps = {
 }
 
 export interface ButtonStyle {
-  Button?: {
+  Button: {
     /** button background color */
-    backgroundColor?: {
+    backgroundColor: {
       primary?: string,
       secondary?: string,
-      alternatif?: string
+      alternative?: string
     }
 
     /** button radius */
     borderRadius?: number
 
     /** button size */
-    size?: {
+    size: {
       normal?: {
         width?: number,
         height?: number
@@ -30,17 +30,21 @@ export interface ButtonStyle {
     }
 
     /** button text size */
-    textSize?: {
-      normal?: number
+    textSize: {
+      normal: number
+    }
+
+    textWeight: {
+      normal: string
     }
 
     /**
      * button text color
      */
-    textColor?: {
+    textColor: {
       primary?: string,
       secondary?: string,
-      alternatif?: string
+      alternative?: string
     }
 
     /**
